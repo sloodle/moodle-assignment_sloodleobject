@@ -121,7 +121,7 @@ class assignment_sloodleobject extends assignment_base {
         $update->data2        = "{$data->primdrop_name}|{$data->primdrop_uuid}|{$data->primdrop_region}|{$data->primdrop_pos}";
         $update->timemodified = time();
 
-        return update_record('assignment_submissions', $update);
+        return sloodle_update_record('assignment_submissions', $update);
     }
 
 
@@ -140,7 +140,7 @@ class assignment_sloodleobject extends assignment_base {
             
             $text = '<div class="files">'.
                   '<img src="'.$CFG->pixpath.'/f/html.gif" class="icon" alt="html" />'.
-                  link_to_popup_window ('/mod/assignment/type/sloodleobject/file.php?id='.$this->cm->id.'&amp;userid='.
+                  link_to_popup_window ('/mod/assignment/type/sloodleobject/file.php?id='.$this->cm->id.'&userid='.
                   $submission->userid, 'file'.$userid, shorten_text(trim(strip_tags($sloodle_submission->obj_name)), 20), 450, 580,
                   get_string('submission', 'assignment'), 'none', true).
                   '</div>';

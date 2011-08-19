@@ -26,15 +26,15 @@
         error("Course Module ID was incorrect");
     }
 
-    if (! $assignment = get_record("assignment", "id", $cm->instance)) {
+    if (! $assignment = sloodle_get_record("assignment", "id", $cm->instance)) {
         error("Assignment ID was incorrect");
     }
 
-    if (! $course = get_record("course", "id", $assignment->course)) {
+    if (! $course = sloodle_get_record("course", "id", $assignment->course)) {
         error("Course is misconfigured");
     }
 
-    if (! $user = get_record("user", "id", $userid)) {
+    if (! $user = sloodle_get_record("user", "id", $userid)) {
         error("User is misconfigured");
     }
 
