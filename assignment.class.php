@@ -140,7 +140,7 @@ class assignment_sloodleobject extends assignment_base {
             
             $text = '<div class="files">'.
                   '<img src="'.$CFG->pixpath.'/f/html.gif" class="icon" alt="html" />'.
-                  link_to_popup_window ('/mod/assignment/type/sloodleobject/file.php?id='.$this->cm->id.'&userid='.
+                  link_to_popup_window ($CFG->wwwroot.'/mod/assignment/type/sloodleobject/file.php?id='.$this->cm->id.'&userid='.
                   $submission->userid, 'file'.$userid, shorten_text(trim(strip_tags($sloodle_submission->obj_name)), 20), 450, 580,
                   get_string('submission', 'assignment'), 'none', true).
                   '</div>';
