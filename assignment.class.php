@@ -21,6 +21,11 @@ require_once($CFG->dirroot.'/mod/sloodle/lib/general.php');
 /** Include the base assignment class, if necessary. */
 require_once($CFG->dirroot.'/mod/assignment/lib.php');
 
+// The assignment plugin seems to be calling this with require or include rather than require_once or include_once.
+// Check if the class exists in case we've already defined it.
+// mod/assignment/view.php?id=21
+if ( !class_exists( 'assignment_sloodleobject' ) ) {
+
 /**
  * Extend the base assignment class for assignments where you submit an SL object in-world.
  * This has been modified from the "assignment_online" type.
@@ -355,6 +360,6 @@ class assignment_sloodleobject_submission
     }
 }
 
-
+}
 
 ?>
