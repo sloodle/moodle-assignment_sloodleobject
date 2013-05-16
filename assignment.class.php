@@ -188,11 +188,11 @@ class assignment_sloodleobject extends assignment_base {
         $ynoptions = array( 0 => get_string('no'), 1 => get_string('yes'));
 
         $mform->addElement('select', 'resubmit', get_string("allowresubmit", "assignment"), $ynoptions);
-        $mform->setHelpButton('resubmit', array('resubmit', get_string('allowresubmit', 'assignment'), 'assignment'));
+        //$mform->setHelpButton('resubmit', array('resubmit', get_string('allowresubmit', 'assignment'), 'assignment'));
         $mform->setDefault('resubmit', 0);
 
         $mform->addElement('select', 'emailteachers', get_string("emailteachers", "assignment"), $ynoptions);
-        $mform->setHelpButton('emailteachers', array('emailteachers', get_string('emailteachers', 'assignment'), 'assignment'));
+        //$mform->setHelpButton('emailteachers', array('emailteachers', get_string('emailteachers', 'assignment'), 'assignment'));
         $mform->setDefault('emailteachers', 0);
     }
 
