@@ -57,9 +57,9 @@ class assignment_sloodleobject extends assignment_base {
         $this->view_dates();
         
         // Display a texture summary of the submission
-        print_simple_box_start('center', '70%', '', 0, 'generalbox', 'online');
+        $this->print_box_start_compat('center', '70%', '', 0, 'generalbox', 'online');
         $sloodle_submission->text_summary(false);
-        print_simple_box_end();
+        $this->print_box_end_compat();
         
         
         $this->view_feedback();
@@ -78,7 +78,7 @@ class assignment_sloodleobject extends assignment_base {
             return;
         }
         // Start a display box
-        print_simple_box_start('center', '', '', 0, 'generalbox', 'dates');
+        $this->print_box_start_compat('center', '', '', 0, 'generalbox', 'dates');
         echo '<table>';
         // Display the time the assignment is available from
         if ($this->assignment->timeavailable) {
@@ -107,7 +107,7 @@ class assignment_sloodleobject extends assignment_base {
             echo ' ('.get_string('numprims', 'sloodle', $num_prims).')</td></tr>';
         }
         echo '</table>';
-        print_simple_box_end();
+        $this->print_box_end_compat();
     }
 
     /**
@@ -169,12 +169,12 @@ class assignment_sloodleobject extends assignment_base {
         // Display the number of prims
         $num_prims = $sloodle_submission->num_prims;
         if ($num_prims == 0) $num_prims = '?';
-        print_simple_box_start('center', '', '', 0, 'generalbox', 'wordcount');
+        $this->print_box_start_compat('center', '', '', 0, 'generalbox', 'wordcount');
         echo ' ('.get_string('numprims', 'sloodle', $num_prims).')';
-        print_simple_box_end();
+        $this->print_box_end_compat();
         
         // Display the text summary of this submission
-        print_simple_box($sloodle_submission->text_summary(), 'center', '100%');
+        $this->print_box_compat($sloodle_submission->text_summary());
     }
     
 
@@ -194,6 +194,38 @@ class assignment_sloodleobject extends assignment_base {
         $mform->addElement('select', 'emailteachers', get_string("emailteachers", "assignment"), $ynoptions);
         //$mform->setHelpButton('emailteachers', array('emailteachers', get_string('emailteachers', 'assignment'), 'assignment'));
         $mform->setDefault('emailteachers', 0);
+    }
+
+    function print_box_compat($message) {
+
+        global $OUTPUT;
+        if ($OUTPUT && method_exists($OUTPUT, 'box')) {
+            print $OUTPUT->box($message);
+        } else {
+            print_simple_box($message);
+        }
+
+    }
+
+    function print_box_start_compat($p1, $p2, $p3, $p4, $p5, $p6) {
+
+        global $OUTPUT;
+        if ($OUTPUT && method_exists($OUTPUT, 'box_start')) {
+            print $OUTPUT->box_start();
+        } else {
+            print_simple_box_start($p1, $p2, $p3, $p4, $p5, $p6);
+        }
+    }
+
+    function print_box_end_compat() {
+
+        global $OUTPUT;
+        if ($OUTPUT && method_exists($OUTPUT, 'box_end')) {
+            print $OUTPUT->box_end();
+        } else {
+            print_simple_box_end();
+        }
+
     }
 
 }
